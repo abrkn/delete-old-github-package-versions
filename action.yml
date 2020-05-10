@@ -1,0 +1,34 @@
+name: "Delete old GitHub package versions"
+description: "Delete GitHub package versions older than a specified age"
+author: "Andreas Brekken"
+inputs:
+  token:
+    required: true
+    description: Github token, like secrets.GITHUB_TOKEN.
+  owner:
+    description: Owner. Defaults to current actor
+    required: false
+  repo:
+    description: Repository. Defaults to current repo
+    required: false
+  packageName:
+    description: GitHub Package name
+    required: true
+  minAge:
+    required: false
+    description: |
+      Minimum package age in human readable. Defaults to 1 week.
+      Example "2d" for 2 days.
+      See https://www.npmjs.com/package/parse-duration for format.
+outputs:
+  deleted:
+    description: |
+      Comma separated list of deleted package versions.
+      Example: "abrkn/test/my-package:some-tag,abrkn/other-repo/some-package:<null>".
+      <null> is used when there is no version name.
+runs:
+  using: "node12"
+  main: "dist/index.js"
+branding:
+  icon: package
+  color: gray-dark
