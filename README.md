@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ./
+      - uses: abrkn/delete-old-github-package-versions@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           packageName: main
